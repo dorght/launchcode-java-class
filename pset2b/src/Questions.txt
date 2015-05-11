@@ -1,0 +1,25 @@
+MultipleChoiceQ, "The p-value is a measure of the probability that the test statistic occurred by chance given that the ____ hypothesis is true", "giant", "special relativity", "null", "evolutionary", answer: "null"
+
+MultipleChoiceQ, "Evil begins when you begin to treat _____ as things", "people", "ideas", "gods", answer: "people"
+
+MultipleChoiceQ, "What is the airspeed velocity of an unladen sparrow?", "Two furlongs per fortnight", "As the crow flies", "A lovely bunch of coconuts", "African or European?", answer: "African or European?"
+
+MultipleChoiceQ, "A basis for a system of government", "Moistened bint lobbing a scimitar", "Strange ladies laying in ponds distributing swords", "Mandate from the masses", "Watery tart threw a sword at you", answer: "Mandate from the masses"
+
+QuantitativeQ, "How many inches in a mile?", answer: "63360"
+
+QuantitativeQ, "What is 6 times 9 (base 13)?", answer: "42"
+
+QuantitativeQ, "How many roads must a man walk down?", answer: "42"
+
+QuantitativeQ, "List pi to 5 decimal digits.", answer: "3.14159"
+
+FillInQ, "If I Only Had a ______", answer: "Brain"
+
+FillInQ, "We all live in a _______ submarine", answer: "yellow"
+
+FillInQ, "It's a Mad, Mad, _____, Mad World", answer: "Mad"
+
+FillInQ, "Ground control to _____ Tom", answer: "Major"
+
+FillInQ, "________ even though the sound of it is something quite atrocious", answer: "Supercalifragilisticexpialidocious"
