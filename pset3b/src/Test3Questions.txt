@@ -1,0 +1,5 @@
+QuantitativeQ, "List pi to 5 decimal digits.", answer: "3.14159"
+
+FillInQ, "If I Only Had a ______", answer: "Brain"
+
+MultipleChoiceQ, "Evil begins when you begin to treat _____ as things", "people", "ideas", "gods", answer: "people"
