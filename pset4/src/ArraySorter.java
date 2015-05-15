@@ -1,3 +1,7 @@
+import java.util.Arrays;
+
+import static java.lang.System.nanoTime;
+
 /**
  * Created by Sean on 5/14/15.
  */
@@ -12,21 +16,16 @@ public class ArraySorter {
         sortStrategy.sort(temp);
     }
 
-    public static int stopWatch() {
-        int starttime = 0;
-        int endtime = 0;
-        //read clock to find start time
-        // starttime != 0
-        // read clock again then subtract to find elapsed time
-        return (endtime - starttime);
-    }
-
     public static void main (String[] args) {
-        int[] random = {3,5,1,9,7};
-System.out.println(random);
+        int[] random = {3,5,1,9,7,7};
+System.out.println(Arrays.toString(random));
         ArraySorter temp = new ArraySorter();
-        temp.setSorter(new BubbleSort());
+        temp.setSorter(new SelectionSort());
+        long starttime = nanoTime();
         temp.sortFunction(random);
-        System.out.println(random);
+        long endtime = nanoTime();
+System.out.println(Arrays.toString(random));
+        long elapsed = endtime - starttime;
+System.out.println("" + elapsed + " nanoseconds");
     }
 }

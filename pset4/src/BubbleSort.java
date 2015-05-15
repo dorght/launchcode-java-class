@@ -1,5 +1,6 @@
 /**
  * Created by Sean on 5/14/15.
+ * a direct port of the bubble sort algorithm written in C for CS50x
  */
 public class BubbleSort implements SortStrategy {
     @Override
