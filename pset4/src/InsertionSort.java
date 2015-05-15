@@ -1,6 +1,6 @@
 /**
  * Created by iHAL on 5/14/15.
- * a direct port of the insertion sort algorithm written in C for CS50x
+ * a direct port of my insertion sort algorithm written in C for CS50x
  */
 public class InsertionSort implements SortStrategy {
     // insertion sort implementation

@@ -1,6 +1,6 @@
 /**
  * Created by iHAL on 5/14/15.
- * a direct port of the selection sort algorithm written in C for CS50x
+ * a direct port of my selection sort algorithm written in C for CS50x
  */
 public class SelectionSort implements SortStrategy {
     @Override
