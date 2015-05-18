@@ -1,19 +1,26 @@
 import java.util.Arrays;
-import java.util.HashMap;
-
 import static java.lang.System.nanoTime;
 
 /**
- * Created by Sean on 5/15/15.
+ * Created by Sean on 5/15/15
+ * ArraySorterTest is meant to test the ArraySorter class and the classes that implement it
  */
 public class ArraySorterTest {
 
-    public void fillArray(int[] array) {
+    /**
+     * fillArray method fills the passed array with random integers
+     * @param array an integer array
+     */
+    public void fillArray (int[] array) {
         for (int i = 0, n = array.length; i < n; i++) {
             array[i] = (int) (Math.random() * 32175);   // Integer.MAX_VALUE
         }
     }
 
+    /**
+     * reverseArray method reverses, in place, the order of elements in an array
+     * @param array an integer array
+     */
     public void reverseArray(int[] array) {
         if (array.length < 2)
             return;
@@ -29,7 +36,14 @@ public class ArraySorterTest {
         }
     }
 
- //    time the sorting of the array
+    // time how long to sort the array
+
+    /**
+     * timeSort method calls the passed sort method and times its execution
+     * @param arraySorter an ArraySorter instance that has set the sort method to be used
+     * @param array an integer array to have its sorting timed
+     * @return the time in nanoseconds (1e-9s) measured to complete the sort of the passed array
+     */
     public long timeSort(ArraySorter arraySorter, int[] array) {
         long starttime = nanoTime();
         arraySorter.performSort(array);
@@ -40,6 +54,9 @@ public class ArraySorterTest {
     }
 
     public static void main (String[] args) {
+        // add any new sort classes to this line
+        SortStrategy[] methods = {new BubbleSort(), new InsertionSort(), new JavaSort(), new SelectionSort()};
+
         ArraySorterTest arraySorterTest = new ArraySorterTest();
         ArraySorter arraySorter = new ArraySorter();
 
@@ -48,63 +65,42 @@ public class ArraySorterTest {
         int[] random = new int[5000];
         arraySorterTest.fillArray(random);
 
-        // generate an array with elements already sorted
+        // create an array from the random array with elements already sorted
         int[] ordered = new int[5000];
-        arraySorterTest.fillArray(ordered);
+        ordered = Arrays.copyOf(random, random.length);
         Arrays.sort(ordered);
 
-        // generate an array with all elements in reverse sort order
+        // create an array from the ordered array all elements in reverse sort order
         int[] reversed = new int[5000];
-        arraySorterTest.fillArray(reversed);
-        Arrays.sort(reversed);
+        reversed = Arrays.copyOf(random, random.length);
         arraySorterTest.reverseArray(reversed);
 
-        HashMap bubbletimes = new HashMap();
-        arraySorter.setSorter(new BubbleSort());
-        int[] testarray = Arrays.copyOf(random, random.length);
-        long testtime = arraySorterTest.timeSort(arraySorter, testarray);
-        bubbletimes.put("Random", testtime);
+        int[][] testarrays = {random, ordered, reversed};
 
-        arraySorter.setSorter(new InsertionSort());
-        testarray = Arrays.copyOf(ordered, ordered.length);
-        testtime = arraySorterTest.timeSort(arraySorter, testarray);
-        bubbletimes.put("Ordered", testtime);
+        // run each sort method on each test array
+        for (SortStrategy sorter : methods) {
+            arraySorter.setSorter(sorter);
 
-        arraySorter.setSorter(new JavaSort());
-        testarray = Arrays.copyOf(reversed, reversed.length);
-        testtime = arraySorterTest.timeSort(arraySorter, testarray);
-        bubbletimes.put("Reversed", testtime);
+            // run for each variety of test array
+            for (int j = 0, n = testarrays.length; j < n; j++) {
+                // copy the original array so it is not altered and identical array reused on other methods
+                int[] testarray = Arrays.copyOf(testarrays[j], testarrays[j].length);
 
+                // time the sorting of the array then push it unto the sorting class's time arraylist
+                long time = arraySorterTest.timeSort(arraySorter, testarray);
+                sorter.addTime(time);
+            }
+        }
 
-//        Object[] methods = {new BubbleSort(), new InsertionSort(), new JavaSort(), new SelectionSort()};
-//        int[][] testarrays = {random, ordered, reversed};
-//        long[][] times = new long[methods.length][testarrays.length];
-//
-//        for (int i = 0, m = methods.length - 1; i < m; i++) {
-//            // set sort method to be tested
-//            arraySorter.setSorter((SortStrategy) methods[i]);
-//
-//            for (int j = 0, n = testarrays.length - 1; j < n; j++) {
-//                // copy the original array so it is not altered and identical array reused on other methods
-//                int[] testarray = Arrays.copyOf(testarrays[j], testarrays[j].length);
-//
-//                // time the sorting of the array
-//                long starttime = nanoTime();
-//                arraySorter.performSort(testarray);
-//                long endtime = nanoTime();arraySorter.performSort(testarray);
-//                times[i][j] = endtime - starttime;
-//            }
-//        }
-//
-//        // display sorting time results
-//        String[] tests = {"Bubble Sort", "Insertion Sort", "Java's Sort", "Selection Sort"};
-//        System.out.println("                 Random     Ordered     Reversed");
-//        for (int i = 0, m = tests.length; i < m; i++) {
-//            System.out.print(tests[i]);
-//            for (int j = 0, n = methods.length; j < n; j++) {
-//                System.out.print("     " + times[i][j]);
-//            }
-//            System.out.println();
-//        }
-//    }
+        // display matrix of sorting time results
+        System.out.println("(times in msec)       Random     Ordered    Reversed");
+        for (SortStrategy sorter : methods) {
+            System.out.printf("%-16s", sorter.getName());
+
+            for (long time : sorter.getTimes()) {
+                System.out.printf("%12.4f", time * 1e-6);
+            }
+            System.out.println();
+        }
+    }
 }
