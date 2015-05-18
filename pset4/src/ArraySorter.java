@@ -9,8 +9,8 @@ public class ArraySorter {
         sortStrategy = sorter;
     }
 
-    public void performSort(int[] temp) {
-        sortStrategy.sort(temp);
+    public void performSort(int[] values) {
+        sortStrategy.sort(values);
     }
 }
 

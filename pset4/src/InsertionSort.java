@@ -3,6 +3,8 @@
  * a direct port of my insertion sort algorithm written in C for CS50x
  */
 public class InsertionSort implements SortStrategy {
+    public final String sortname = "Insertion Sort";
+
     // insertion sort implementation
     // 'unsorted' is first value in unsorted portion of array
     public void sort(int[] values) {

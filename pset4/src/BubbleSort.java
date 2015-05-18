@@ -3,6 +3,8 @@
  * a direct port of my bubble sort algorithm written in C for CS50x
  */
 public class BubbleSort implements SortStrategy {
+    public final String sortname = "Bubble Sort";
+
     @Override
     public void sort(int[] values) {
         int j = values.length - 1;

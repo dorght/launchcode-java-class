@@ -3,6 +3,8 @@
  * a direct port of my selection sort algorithm written in C for CS50x
  */
 public class SelectionSort implements SortStrategy {
+    public final String sortname = "Selection Sort";
+
     @Override
     public void sort(int values[])
     {
